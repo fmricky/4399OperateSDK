@@ -74,6 +74,25 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 # SDK接入流程
 ## 初始化与析构
 初始化推荐在游戏初始化过程中进行，析构函数则在游戏退出前执行。
+```java
+OperateCenter mOpeCenter = OperateCenter.getInstance(MainActivity.this);
+mOpCenter.init(new OnInitFinishedListener(){
+    @Override
+    public void onInitFinished(boolean isLogin, String uid, String name, String token){
+        //TODO: SDK初始化完成后的操作
+    }
+});
+```
+设置__是否支持处理超出部分金额__
+```java
+mOpeCenter.setSupportExcess(support);
+```
+析构
+```java
+mOpeCenter.finalize();
+```
+
+*注：代码中MainActivity为当前Activity,下同。*
 
 __能否支持处理超出部分金额__指在使用SDK充值时，由于用户选择的充值渠道不同，可能造成实际充值金额超出游戏下单时传入的金额。如果游戏服务端能够正确处理超出部分的金额，则本接口传入true。如果无法支持处理超出部分的金额，则传入false，SDK将会根据传入金额自动隐藏无法满足充值金额的渠道（例：开发者设置SupportExcess为false，充值时传入7元，此时4399一卡通中无7元面额的充值卡，此时4399一卡通的充值渠道将自动隐藏）。*SupportExcess*默认为false。
 ## 用户登录

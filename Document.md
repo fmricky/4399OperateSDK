@@ -44,6 +44,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.SEND_SMS" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ``` 
 - 注册SDK相关Activity
 ``` xml

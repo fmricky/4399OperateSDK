@@ -89,7 +89,7 @@ mOpeCenter.setSupportExcess(support);
 ```
 析构
 ```java
-mOpeCenter.finalize();
+mOpeCenter.destroy();
 ```
 
 *注：代码中MainActivity为当前Activity,下同。*

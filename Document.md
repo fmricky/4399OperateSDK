@@ -36,7 +36,6 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 ### 配置AndroidManifest.xml文件
 - 添加SDK所需的权限 
 ``` xml
-<uses-permission android:name="android.permission.CHANGE_CONFIGURATION"></uses-permission>
 <uses-permission android:name="android.permission.CALL_PHONE"/>
 <uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
 <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" 	/>
@@ -166,13 +165,7 @@ mOpeCenter.setServer("SERVER_ID");
 ## 检查更新
 当游戏调用本接口时，SDK将检查后台是否有新版本游戏上线，如果有，则显示更新内容，并提示用户升级。该升级为增量升级，后台在提交新版游戏时自动制作差分包，更新时用户只需下载APK文件中新旧版本有差异的部分。相关更新内容和版本提交事宜，请联系4399相关运营对接人员。
 ```java
-mOpeCenter.updateApk(MainActivity.this, new OnUpdateFinishedListener() {
-	    @Override
-	    public void onUpdateFinished(boolean success, int resultCode)
-	    {
-            
-	    }
-	});
+mOpeCenter.updateApk(MainActivity.this);
 ```
 
 ## 充值

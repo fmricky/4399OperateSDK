@@ -17,7 +17,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 [2 集成流程](#集成流程) 
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 接入前期准备](#接入前期准备)   
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 SDK集成流程](#SDK%E9%9B%86%E6%88%90%E6%B5%81%E7%A8%8B)   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 关联依赖工程](#关联依赖工程)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 关联资源工程](#关联资源工程)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.2 配置AndroidManifest.xml文件](#%E9%85%8D%E7%BD%AEandroidmanifestxml%E6%96%87%E4%BB%B6)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.3 代码混淆配置](#代码混淆配置)  
 [3 接入流程](#接入流程)  
@@ -56,10 +56,13 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 ## SDK集成流程
 假设现在你的工程目录名字叫project，下面将具体介绍如何将SDK接入project中。
 
-### 关联依赖工程
-1. 将m4399OperateSDK工程关联到project：将m4399OperateSDK导入到eclipse中→右键点击4399OperateSDK工程名→Properties→Android→勾选Is Library→OK；
-右键点击project工程名→Properties→Add→在弹出的对话框中点选资源工程m4399OperateSDK→OK→对话框关闭，点击OK
-2. 将`alipay_msp.apk`拷贝到你的project的`asserts`目录下
+### 关联资源工程
+1. 将m4399OperateSDK工程关联到project
+- 将m4399OperateSDK导入到eclipse中
+- 右键点击4399OperateSDK工程名→Properties→Android
+- 勾选Is Library→OK
+- 右键点击project工程名→Properties→Add
+- 在弹出的对话框中点选资源工程m4399OperateSDK→OK
 
 ### 配置AndroidManifest.xml文件
 - 添加SDK所需的权限 

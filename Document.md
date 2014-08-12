@@ -10,17 +10,17 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 
 #目录
 
-[1. 文档说明](#文档说明)  
+[1 文档说明](#文档说明)  
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 功能描述](#功能描述)   
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 阅读对象](#阅读对象)   
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 开发包内容](#开发包内容)   
-[2. 集成流程](#集成流程) 
+[2 集成流程](#集成流程) 
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 接入前期准备](#接入前期准备)   
-&nbsp;&nbsp;&nbsp;&nbsp;[2.2 集成流程](#集成流程)   
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 SDK集成流程](#SDK%E9%9B%86%E6%88%90%E6%B5%81%E7%A8%8B)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 关联依赖工程](#关联依赖工程)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.2 配置AndroidManifest.xml文件](#%E9%85%8D%E7%BD%AEandroidmanifestxml%E6%96%87%E4%BB%B6)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.3 代码混淆配置](#代码混淆配置)  
-[3. 接入流程](#接入流程) 
+[3 接入流程](#接入流程)  
 &nbsp;&nbsp;&nbsp;&nbsp;[3.1 初始化与析构](#初始化与析构)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.2 用户登录](#用户登录)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.3 获取当前登录用户信息](#获取当前登录用户信息)   
@@ -29,7 +29,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 &nbsp;&nbsp;&nbsp;&nbsp;[3.6 登录状态查询](#登录状态查询)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.7 获取缓存用户名列表](#获取缓存用户名列表)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.8 删除缓存用户名](#删除缓存用户名)   
-&nbsp;&nbsp;&nbsp;&nbsp;[3.9 设置用户所在服务器ID](#设置用户所在服务器ID)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.9 设置用户所在服务器ID](#%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E6%89%80%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8id)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.10 检查更新](#检查更新)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.11 充值](#充值)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.12 获取状态信息](#获取状态信息)   
@@ -53,7 +53,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 3. GameKey为接入客户端SDK时使用，在初始化SDK时传入。
 4. GameKey，Screct同时需要配置在服务端，详见服务端接口文档。
 
-## 集成流程
+## SDK集成流程
 假设现在你的工程目录名字叫project，下面将具体介绍如何将SDK接入project中。
 
 ### 关联依赖工程
@@ -130,7 +130,7 @@ mOpCenter.init(new OnInitFinishedListener(){
     }
 });
 ```
-设置__是否支持处理超出部分金额__
+设置`是否支持处理超出部分金额`
 ```java
 mOpeCenter.setSupportExcess(support);
 ```
@@ -141,7 +141,7 @@ mOpeCenter.destroy();
 
 *注：代码中MainActivity为当前Activity,下同。*
 
-__能否支持处理超出部分金额__指在使用SDK充值时，由于用户选择的充值渠道不同，可能造成实际充值金额超出游戏下单时传入的金额。如果游戏服务端能够正确处理超出部分的金额，则本接口传入true。如果无法支持处理超出部分的金额，则传入false，SDK将会根据传入金额自动隐藏无法满足充值金额的渠道（例：开发者设置SupportExcess为false，充值时传入7元，此时4399一卡通中无7元面额的充值卡，此时4399一卡通的充值渠道将自动隐藏）。*SupportExcess*默认为false。
+`能否支持处理超出部分金额`指在使用SDK充值时，由于用户选择的充值渠道不同，可能造成实际充值金额超出游戏下单时传入的金额。如果游戏服务端能够正确处理超出部分的金额，则本接口传入true。如果无法支持处理超出部分的金额，则传入false，SDK将会根据传入金额自动隐藏无法满足充值金额的渠道（例：开发者设置SupportExcess为false，充值时传入7元，此时4399一卡通中无7元面额的充值卡，此时4399一卡通的充值渠道将自动隐藏）。*SupportExcess*默认为false。
 ## 用户登录
 用户在触发登录时，调用该接口，如果SDK内已包含未注销的用户凭证，将自动返回用户信息。如需强制调出登录界面，请使用【用户切换】接口。
 ```java
@@ -159,7 +159,7 @@ SDK会自动识别用户手机中是否安装了新版的4399游戏盒1.4.1以�
 *注：登录后如果未注销，登录状态将一直保持直至登录凭证过期或失效（若用户修改平台账户密码，所有游戏授权凭证将失效，需重新登录）。建议游戏在初始化完成后调用【登录状态查询】接口查询用户当前登录状态。* 
 
 ## 获取当前登录用户信息
-在SDK处于登录状态时，可通过该接口获取当前用户的信息（UID、用户名、昵称、登录凭证）。
+在SDK处于登录状态时，可通过该接口获取当前用户的信息（`UID`、`用户名`、`昵称`、`登录凭证`）。
 ```java
 User user = mOpeCenter.getCurrentAccount();
 ```
@@ -212,7 +212,7 @@ mOpeCenterremoveCacheAccount("USER_NAME");
 mOpeCenter.setServer("SERVER_ID");
 ```
 ## 检查更新
-当游戏调用本接口时，SDK将检查后台是否有新版本游戏上线，如果有，则显示更新内容，并提示用户升级。该升级为增量升级，后台在提交新版游戏时自动制作差分包，更新时用户只需下载APK文件中新旧版本有差异的部分。相关更新内容和版本提交事宜，请联系4399相关运营对接人员。
+当游戏调用本接口时，SDK将检查后台是否有新版本游戏上线，如果有，则显示更新内容，并提示用户升级。该升级为`增量升级`，后台在提交新版游戏时自动制作差分包，更新时用户只需下载APK文件中新旧版本有差异的部分。相关更新内容和版本提交事宜，请联系4399相关运营对接人员。
 ```java
 mOpeCenter.updateApk(MainActivity.this, new OnUpdateFinishedListener() {
 	    @Override
@@ -227,8 +227,8 @@ mOpeCenter.updateApk(MainActivity.this, new OnUpdateFinishedListener() {
 当用户需要充值时，可调用本接口启动充值中心界面。
 ```java
 mOpeCenter.recharge(MainActivity.this,
-				je,     //充值金额（元）
-				mark,   //游戏方订单号
+				je,             //充值金额（元）
+				mark,           //游戏方订单号
 				productName,    //商品名称
 				new OnRechargeFinishedListener() {
 
@@ -240,12 +240,12 @@ mOpeCenter.recharge(MainActivity.this,
 				    }
 				});
 ```
-* `je`充值金额：4399充值中心仅支持整数金额充值，最小充值金额1元。
+* `je`充值金额：4399充值中心仅支持整数金额充值，最小充值金额`1`元，最大不超过`5000`元。
 * `mark`订单号：最大长度32位，由包含字母或数字组成的唯一字符串，该字段不可为空。
-* `productName`商品名称：如果传入商品名，充值中心将直接显示改商品名称，如果充值金额大于下单时传入的je时，将显示商品名+XXX游戏币，相关游戏币的兑换比例在接入时提供给运营人员配置。如果未传入商品名，则直接显示XXX游戏币。
+* `productName`商品名称：如果传入商品名，充值中心将直接显示改商品名称，如果充值金额大于下单时传入的`je`时，将显示商品名+XXX游戏币，相关游戏币的兑换比例在接入时提供给运营人员配置。如果未传入商品名，则直接显示XXX游戏币。
 
 ## 获取状态信息
-工具接口，用于将解析回调函数中的resultCode解析为中文的说明。
+工具接口，用于将解析回调函数中的`resultCode`解析为中文的说明。
 ```java
 String resultMessage = OperateCenter.getResultMsg(resultCode);
 ```

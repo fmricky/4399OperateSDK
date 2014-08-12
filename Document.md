@@ -34,7 +34,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 ### 关联依赖工程
 1. 将m4399OperateSDK工程关联到project：将m4399OperateSDK导入到eclipse中→右键点击4399OperateSDK工程名→Properties→Android→勾选Is Library→OK；
 右键点击project工程名→Properties→Add→在弹出的对话框中点选资源工程m4399OperateSDK→OK→对话框关闭，点击OK
-2. 将alipay_msp.apk 拷贝到你的project的asserts目录下
+2. 将`alipay_msp.apk`拷贝到你的project的`asserts`目录下
 
 ### 配置AndroidManifest.xml文件
 - 添加SDK所需的权限 
@@ -50,8 +50,28 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 <uses-permission android:name="android.permission.SEND_SMS" />
 ``` 
 - 注册SDK相关Activity
-``` xml
-待定
+```xml
+<activity
+	android:name="cn.m4399.operate.ui.activity.LoginActivity"
+	android:launchMode="singleTask"
+	android:theme="@style/TransparentStyle" />
+<activity
+	android:name="cn.m4399.operate.ui.activity.UserCenterActivity"
+	android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+<activity
+	android:name="cn.m4399.operate.ui.activity.CustomWebActivity"
+	android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+<activity
+	android:name="cn.m4399.recharge.ui.activity.RechargeActivity"
+	android:launchMode="singleTask"
+	android:theme="@style/MVTheme" />
+<activity android:name="com.alipay.sdk.app.H5PayActivity" />
+<activity
+	android:name="com.umpay.huafubao.ui.BillingActivity"
+	android:configChanges="orientation|keyboard|screenSize"
+	android:excludeFromRecents="true" >
+</activity>
+<service android:name="com.umpay.huafubao.service.AppUpgradeService" />
 ```
 
 ### 代码混淆配置
@@ -195,9 +215,9 @@ mOpeCenter.recharge(MainActivity.this,
 				    }
 				});
 ```
-* *je*充值金额：4399充值中心仅支持整数金额充值，最小充值金额1元。
-* *mark*订单号：最大长度32位，由包含字母或数字组成的唯一字符串，该字段不可为空。
-* *productName*商品名称：如果传入商品名，充值中心将直接显示改商品名称，如果充值金额大于下单时传入的je时，将显示商品名+XXX游戏币，相关游戏币的兑换比例在接入时提供给运营人员配置。如果未传入商品名，则直接显示XXX游戏币。
+* `je`充值金额：4399充值中心仅支持整数金额充值，最小充值金额1元。
+* `mark`订单号：最大长度32位，由包含字母或数字组成的唯一字符串，该字段不可为空。
+* `productName`商品名称：如果传入商品名，充值中心将直接显示改商品名称，如果充值金额大于下单时传入的je时，将显示商品名+XXX游戏币，相关游戏币的兑换比例在接入时提供给运营人员配置。如果未传入商品名，则直接显示XXX游戏币。
 
 ## 获取状态信息
 工具接口，用于将解析回调函数中的resultCode解析为中文的说明。

@@ -58,11 +58,11 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 
 ### 关联资源工程
 1. 将m4399OperateSDK工程关联到project
-- 将m4399OperateSDK导入到eclipse中
-- 右键点击4399OperateSDK工程名→Properties→Android
-- 勾选Is Library→OK
-- 右键点击project工程名→Properties→Add
-- 在弹出的对话框中点选资源工程m4399OperateSDK→OK
+* 将m4399OperateSDK导入到eclipse中
+* 右键点击4399OperateSDK工程名→Properties→Android
+* 勾选Is Library→OK
+* 右键点击project工程名→Properties→Add
+* 在弹出的对话框中点选资源工程m4399OperateSDK→OK
 
 ### 配置AndroidManifest.xml文件
 - 添加SDK所需的权限 

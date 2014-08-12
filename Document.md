@@ -11,11 +11,28 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 #目录
 
 [1. 文档说明](#文档说明)  
-        [1.1 功能描述](#功能描述)   
-        [1.2 阅读对象](#阅读对象)   
-        [1.3 开发包内容](#开发包内容)   
-
-
+&nbsp;&nbsp;&nbsp;&nbsp;[1.1 功能描述](#功能描述)   
+&nbsp;&nbsp;&nbsp;&nbsp;[1.2 阅读对象](#阅读对象)   
+&nbsp;&nbsp;&nbsp;&nbsp;[1.3 开发包内容](#开发包内容)   
+[2. 集成流程](#集成流程) 
+&nbsp;&nbsp;&nbsp;&nbsp;[2.1 接入前期准备](#接入前期准备)   
+&nbsp;&nbsp;&nbsp;&nbsp;[2.2 集成流程](#集成流程)   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 关联依赖工程](#关联依赖工程) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.2 配置AndroidManifest.xml文件](##%E9%85%8D%E7%BD%AEandroidmanifestxml%E6%96%87%E4%BB%B6)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.3 代码混淆配置](#代码混淆配置)  
+[3. 接入流程](#接入流程) 
+&nbsp;&nbsp;&nbsp;&nbsp;[3.1 初始化与析构](#初始化与析构)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.2 用户登录](#用户登录)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.3 获取当前登录用户信息](#获取当前登录用户信息)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.4 用户切换](#用户切换)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.5 用户注销](#用户注销)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.6 登录状态查询](#登录状态查询)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.7 获取缓存用户名列表](#获取缓存用户名列表)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.8 删除缓存用户名](#删除缓存用户名)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.9 设置用户所在服务器ID](#设置用户所在服务器ID)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.10 检查更新](#检查更新)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.11 充值](#充值)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.12 获取状态信息](#获取状态信息)   
 # 文档说明
 ## 功能描述
 4399运营SDK（以下简称：SDK）主要用来向第三方游戏开发者提供便捷、安全一级可靠的4399账户登录、多渠道充值付费、版本升级检测等功能。本文主要描述SDK接口的使用方法，供合作伙伴的开发者接入使用。
@@ -101,7 +118,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 -keep class com.alipay.android.app.IAlixPay{*;}
 -keep class com.alipay.android.app.IRemoteServiceCallback{*;} 
 ```
-# SDK接入流程
+# 接入流程
 ## 初始化与析构
 初始化推荐在游戏初始化过程中进行，析构函数则在游戏退出前执行。
 ```java

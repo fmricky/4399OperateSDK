@@ -77,7 +77,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.SEND_SMS" />
 ``` 
-- 注册SDK相关Activity
+- 注册SDK相关Activity，注意必须放入`<application>`元素区块内
 ```xml
 <activity
 	android:name="cn.m4399.operate.ui.activity.LoginActivity"
@@ -103,7 +103,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 ```
 
 ### 代码混淆配置
-如果游戏有需要进行代码混淆，请再项目根目录下的project.properties里加入`proguard.config=proguard.cfg`并且在根目录下的proguard.cfg文件里追加以下配置
+如果游戏有需要进行代码混淆，请不要混淆联编的jar包下的类，可以在`proguard.cfg`文件里追加以下配置排除SDK jar包中得类
 
 ``` 
 -libraryjars ../m4399RechargeSDK/libs/m4399RechargeSDK.jar
@@ -245,7 +245,7 @@ mOpeCenter.recharge(MainActivity.this,
 ```
 * `je`充值金额：4399充值中心仅支持整数金额充值，最小充值金额`1`元，最大不超过`5000`元。
 * `mark`订单号：最大长度32位，由包含字母或数字组成的唯一字符串，该字段不可为空。
-* `productName`商品名称：如果传入商品名，充值中心将直接显示改商品名称，如果充值金额大于下单时传入的`je`时，将显示商品名+XXX游戏币，相关游戏币的兑换比例在接入时提供给运营人员配置。如果未传入商品名，则直接显示XXX游戏币。
+* `productName`商品名称：最长不超过8个字符。 如果传入商品名，充值中心将直接显示改商品名称，如果充值金额大于下单时传入的`je`时，将显示商品名+XXX游戏币，相关游戏币的兑换比例在接入时提供给运营人员配置。如果未传入商品名，则直接显示XXX游戏币。
 
 ## 获取状态信息
 工具接口，用于将解析回调函数中的`resultCode`解析为中文的说明。

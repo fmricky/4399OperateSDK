@@ -16,7 +16,7 @@
 uid|是|int|用户ID，my平台的用户uid 
 state|是|string|登录后SDK获取的服务端TOKEN
 key|是|int|SDK提供的GAME_KEY
-sign|是|string|加密签名，签名计算为：md5(`$key`.`$uid`.`$state`.`$secret`); 详见[充值说明](#充值说明)。
+sign|是|string|加密签名，签名计算为：md5(`$key`.`$uid`.`$state`.`$secret`); 详见[签名说明](#签名说明)。
 
 ### 返回结果
 ```json
@@ -28,15 +28,11 @@ sign|是|string|加密签名，签名计算为：md5(`$key`.`$uid`.`$state`.`$se
 
 ```
 返回值说明  
-`code`状态码:  
-
-- `100`:验证成功
-- `87`:参数不全
-- `86`:签名错误
-- `85`:验证失败  
-
-`message`:对应`code`的返回值描述
-`result`:空值（无作用）
+参数名  |   说明
+--------|-----------
+code    |状态码:</br>`100`:验证成功</br>`87`:参数不全</br>`86`:签名错误</br>`85`:验证失败  
+message |对应`code`的返回值描述
+result  |空值（无作用）
 
 
 ## 充值回调接口
@@ -62,7 +58,7 @@ serverid|否|int|要充值的服务区号。只针对有分服的游戏有效。
 mark|否|string|作为预留字段，部分游戏在游戏内发起充值时，会生成唯一标识来标注该笔充值的相关信息时，可以用本字段。（游戏方生成的订单号）
 roleid|否|int|要充值的游戏角色id，只针对pc端充值时，需要选择游戏角色的游戏有效。roleid的值由角色接口提供（见接口2）
 time|是|int|发起请求时的时间戳
-sign|是|strin|加密签名，签名计算为：`$sign` = md5(`$orderid` . `$uid` . `$money` . `$gamemoney` . `$serverid` . `$secret` . `$mark` . `$roleid`.`$time`); 当参数`$serverid`,`$mark` ,`$roleid`为空时，不参与签名计算。详见[充值说明](#充值说明)。
+sign|是|strin|加密签名，签名计算为：`$sign` = md5(`$orderid` . `$uid` . `$money` . `$gamemoney` . `$serverid` . `$secret` . `$mark` . `$roleid`.`$time`); 当参数`$serverid`,`$mark` ,`$roleid`为空时，不参与签名计算。详见[签名说明](#签名说明)。
 
 
 ### 返回结果
@@ -83,7 +79,7 @@ status |`1`：异常</br>`2`：成功</br>`3`：失败（将钱返还给用户�
 code|异常状态码，成功或失败为空。</br>`sign_error`请求串的md5验证码错误;</br> `user_not_exist`用户账号不存在； </br>`orderid_exist`订单已提交（提交订单号必须唯一); </br>`money_error`充值金额或兑换游戏币数量错误，充值金额为正整数，需符合双方约定的兑换标准; </br>`other_error`其他错误
 money|用户兑换的游币数量  
 gamemoney|用户实际兑换的游戏币的数量  
-message|开发商自定义的内容（返回结果的说明等）  
+msg|开发商自定义的内容（返回结果的说明等）  
 
 ## 订单信息查询接口
 ### 接口定义
@@ -95,10 +91,10 @@ message|开发商自定义的内容（返回结果的说明等）
 ### 请求参数
    字段    |   必填    |   数据类型    |   说明    
 -----------|-----------|---------------|-----------
-order|是|string|订单号
-time|是|int|发起请求时的时间戳
-serverid|否|int|充值对应的服务器id，如果不需要该参数或者无服务器概念的游戏，可无视
-flag|是|string|加密签名，签名计算为：`$flag` = md5(`$order` . `$time` . `$secret`); 详见[充值说明](#充值说明)。  
+order   |   是  |   string  |   订单号
+time    |   是  |   int     |   发起请求时的时间戳
+serverid|   否  |   int     |   充值对应的服务器id，如果不需要该参数或者无服务器概念的游戏，可无视
+flag    |   是  |   string  |   加密签名，签名计算为：`$flag` = md5(`$order` . `$time` . `$secret`);详见[签名说明](#签名说明)。  
 
 
 ### 返回结果

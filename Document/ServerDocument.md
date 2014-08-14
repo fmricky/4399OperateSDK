@@ -136,7 +136,7 @@ gamemoney|游戏币
 time|充值的时间，格式：`YYYY-mm-dd HH:ii:ss`
 nickname|用户在游戏中的角色名
 server_id|充值的游戏服务器id
-status|订单状态:<br/>`“1”`：成功 <br/>`“2”`：失败
+status|订单状态:<br/>`“1”`：成功 <br/>`“-1”`：失败
 
 错误代码    |   说明    
 ------------|-----------

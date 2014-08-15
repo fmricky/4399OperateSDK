@@ -1,4 +1,4 @@
-[![4399](http://github.com/fmricky/4399OperateSDK/raw/master/Image/4399LOGO.jpg)](http://www.4399.cn)运营SDK Android客户端v2.0接入说明
+[![4399](http://github.com/fmricky/4399OperateSDK/blob/master/Image/4399LOGO.jpg)](http://www.4399.cn)运营SDK Android客户端v2.0接入说明
 ====================== 
 
 ##修改记录 

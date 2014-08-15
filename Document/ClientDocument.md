@@ -14,7 +14,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 &nbsp;&nbsp;&nbsp;&nbsp;[1.1 功能描述](#功能描述)   
 &nbsp;&nbsp;&nbsp;&nbsp;[1.2 阅读对象](#阅读对象)   
 &nbsp;&nbsp;&nbsp;&nbsp;[1.3 开发包内容](#开发包内容)   
-[2 集成流程](#集成流程) 
+[2 集成流程](#集成流程)   
 &nbsp;&nbsp;&nbsp;&nbsp;[2.1 接入前期准备](#接入前期准备)   
 &nbsp;&nbsp;&nbsp;&nbsp;[2.2 SDK集成流程](#SDK%E9%9B%86%E6%88%90%E6%B5%81%E7%A8%8B)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.1 关联资源工程](#关联资源工程)  

@@ -23,7 +23,7 @@
 uid|是|int|用户ID，my平台的用户uid 
 state|是|string|登录后SDK获取的服务端TOKEN
 key|是|int|SDK提供的GAME_KEY
-sign|是|string|加密签名，签名计算为：md5(`$key`.`$uid`.`$state`.`$secret`); 详见[签名说明](#签名说明)。
+sign|是|string|加密签名，签名计算为：md5(`$key`.`$uid`.`$state`.`$secrect`); 详见[签名说明](#签名说明)。
 
 ### 返回结果
 ```json
@@ -66,7 +66,7 @@ serverid|否|int|要充值的服务区号。只针对有分服的游戏有效。
 mark|否|string|作为预留字段，部分游戏在游戏内发起充值时，会生成唯一标识来标注该笔充值的相关信息时，可以用本字段。（游戏方生成的订单号）
 roleid|否|int|要充值的游戏角色id，只针对pc端充值时，需要选择游戏角色的游戏有效。roleid的值由角色接口提供（见接口2）
 time|是|int|发起请求时的时间戳
-sign|是|string|加密签名，签名计算为：`$sign` = md5(`$orderid` . `$uid` . `$money` . `$gamemoney` . `$serverid` . `$secret` . `$mark` . `$roleid`.`$time`); 当参数`$serverid`,`$mark` ,`$roleid`为空时，不参与签名计算。详见[签名说明](#签名说明)。
+sign|是|string|加密签名，签名计算为：`$sign` = md5(`$orderid` . `$uid` . `$money` . `$gamemoney` . `$serverid` . `$secrect` . `$mark` . `$roleid`.`$time`); 当参数`$serverid`,`$mark` ,`$roleid`为空时，不参与签名计算。详见[签名说明](#签名说明)。
 
 
 ### 返回结果
@@ -104,7 +104,7 @@ msg|开发商自定义的内容（返回结果的说明等）
 order   |   是  |   string  |   订单号
 time    |   是  |   int     |   发起请求时的时间戳
 serverid|   否  |   int     |   充值对应的服务器id，如果不需要该参数或者无服务器概念的游戏，可无视
-flag    |   是  |   string  |   加密签名，签名计算为：`$flag` = md5(`$order` . `$time` . `$secret`);详见[签名说明](#签名说明)。  
+flag    |   是  |   string  |   加密签名，签名计算为：`$flag` = md5(`$order` . `$time` . `$secrect`);详见[签名说明](#签名说明)。  
 
 
 ### 返回结果
@@ -148,5 +148,5 @@ status|订单状态:<br/>`“1”`：成功 <br/>`“-1”`：失败
 ## 签名说明
 1. 参与签名的所有参数为接受到的原始参数，请不要在参与签名计算前对参数做任何处理  
 2. 使用标准`MD5`算法对该字符串加密  
-3. `$secret` 为双方约定的密钥  
+3. `$secrect` 为4399自动分配的密钥，仅可用于服务端，请勿将其写入客户端代码中。
 

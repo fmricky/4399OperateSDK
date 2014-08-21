@@ -21,20 +21,20 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.2 配置AndroidManifest.xml文件](#%E9%85%8D%E7%BD%AEandroidmanifestxml%E6%96%87%E4%BB%B6)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[2.2.3 代码混淆配置](#代码混淆配置)  
 [3 接入流程](#接入流程)  
-&nbsp;&nbsp;&nbsp;&nbsp;[3.1 初始化](#初始化与析构)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.1 初始化【必接】](#初始化与析构)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.2 设置切换用户监听器](#设置切换用户监听器)   
-&nbsp;&nbsp;&nbsp;&nbsp;[3.3 用户登录](#用户登录)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.3 用户登录【必接】](#用户登录)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.4 获取当前登录用户信息](#获取当前登录用户信息)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.5 用户切换](#用户切换)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.6 用户注销](#用户注销)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.7 登录状态查询](#登录状态查询)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.8 获取缓存用户名列表](#获取缓存用户名列表)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.9 删除缓存用户名](#删除缓存用户名)   
-&nbsp;&nbsp;&nbsp;&nbsp;[3.10 设置用户所在服务器ID](#%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E6%89%80%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8id)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.10 设置用户所在服务器ID【必接】](#%E8%AE%BE%E7%BD%AE%E7%94%A8%E6%88%B7%E6%89%80%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8id)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.11 检查更新](#检查更新)   
-&nbsp;&nbsp;&nbsp;&nbsp;[3.12 充值](#充值)   
+&nbsp;&nbsp;&nbsp;&nbsp;[3.12 充值【必接】](#充值)   
 &nbsp;&nbsp;&nbsp;&nbsp;[3.13 获取状态信息](#获取状态信息)   
-&nbsp;&nbsp;&nbsp;&nbsp;[3.14 析构](#析构) 
+&nbsp;&nbsp;&nbsp;&nbsp;[3.14 析构【必接】](#析构) 
 # 文档说明
 ## 功能描述
 4399运营SDK（以下简称：SDK）主要用来向第三方游戏开发者提供便捷、安全一级可靠的4399账户登录、多渠道充值付费、版本升级检测等功能。本文主要描述SDK接口的使用方法，供合作伙伴的开发者接入使用。
@@ -51,7 +51,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 # 集成流程
 ## 接入前期准备
 1. 向4399运营人员提供游戏名称、游戏内货币名称、人民币与游戏币的兑换率
-2. 4399运营人员会提供接入时需要的GameKey和Screct
+2. 4399运营人员会提供接入时需要的`GameKey`和`Secrect`。
 3. GameKey为接入客户端SDK时使用，在初始化SDK时传入。
 4. GameKey，Screct同时需要配置在服务端，详见服务端接口文档。
 
@@ -79,7 +79,7 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 <uses-permission android:name="android.permission.SEND_SMS" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ``` 
-- 注册SDK相关Activity，注意必须放入`<application>`元素区块内
+- 注册SDK相关Activity&Service，注意必须放入`<application>`元素区块内
 ```xml
 <activity
 	android:name="cn.m4399.operate.ui.activity.LoginActivity"
@@ -95,14 +95,17 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 	android:name="cn.m4399.recharge.ui.activity.RechargeActivity"
 	android:launchMode="singleTask"
 	android:theme="@style/MVTheme" />
-<activity android:name="com.alipay.sdk.app.H5PayActivity" />
+<!--------以下为第三方支付SDK Activity&Service配置------------>
+<activity android:name="com.alipay.sdk.app.H5PayActivity" 
+          android:screenOrientation="landscape"/>
 <activity
 	android:name="com.umpay.huafubao.ui.BillingActivity"
-	android:configChanges="orientation|keyboard|screenSize"
+	android:configChanges="landscape"
 	android:excludeFromRecents="true" >
 </activity>
 <service android:name="com.umpay.huafubao.service.AppUpgradeService" />
 ```
+* 注：第三方支付SDK的Activity需在AndroidManifest.xml中强制配置横竖屏，请游戏方根据游戏的横竖屏要求手工配置`landscape`|`portrait`
 
 ### 代码混淆配置
 如果游戏有需要进行代码混淆，请不要混淆联编的jar包下的类，可以在`proguard.cfg`文件里追加以下配置排除SDK jar包中得类
@@ -129,11 +132,11 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 ```java
 mOpeCenter = OperateCenter.getInstance();
 	mOpeConfig = new OperateCenterConfig.Builder(this)
-		// 配置sdk属性,比如可扩展横竖屏配置
-		.setDebugUpgrade(true)  
-		.setOrientation(getResources().getConfiguration().orientation)  //设置横竖屏方向，默认为竖屏
+	    .setGameKey("GAME_KEY")     //设置GameKey
+		.setDebugEnabled(false)     //设置DEBUG模式,用于接入过程中开关日志输出，发布前必须设置为false。默认为false。
+		.setOrientation(OperateCenterConfig.SCREEN_ORIENTATION_LANDSCAPE)  //设置横竖屏方向，默认为横屏
 		.setSupportExcess(true)     //设置服务端是否支持处理超出部分金额，默认为false
-		.setGameKey("40027")        //设置GameKey
+		.setShowPopWindow(true)     //设置是否显示悬浮窗，默认为true
 		.build();
 	mOpeCenter.setConfig(mOpeConfig);
 	mOpeCenter.init(new OperateCenter.OnInitGloabListener() {
@@ -144,7 +147,7 @@ mOpeCenter = OperateCenter.getInstance();
             //初始化完成后操作（例如检查当前登录状态）
 	    }
 	    
-        //用户通过个人中心注销回调
+        //用户通过悬浮窗-个人中心-注销成功时SDK调用该回调
 	    @Override
 	    public void onUserAccountLogout()
 	    {
@@ -152,6 +155,7 @@ mOpeCenter = OperateCenter.getInstance();
 	    }
 });
 ```
+
 `是否支持处理超出部分金额`也可单独设置
 ```java
 mOpeCenter.setSupportExcess(support);
@@ -184,8 +188,9 @@ mOpeCenter.login(MainActivity.this, new OnLoginFinishedListener() {
 });
 ```
 SDK会自动识别用户手机中是否安装了新版的4399游戏盒1.4.1以上版本，如果已安装，自动跳转至游戏盒授权登录。如果未安装，则弹出Web版4399统一登录界面。
+在登录成功后，监听器返回的`User`类型的用户信息中将包含`State`登录凭证，该信息可用于游戏服务端进行[用户信息二次验证](https://github.com/fmricky/4399OperateSDK/blob/master/Document/ServerDocument.md#%E7%99%BB%E5%BD%95%E5%87%AD%E8%AF%81%E9%AA%8C%E8%AF%81%E6%8E%A5%E5%8F%A3)
 
-*注：登录后如果未注销，登录状态将一直保持直至登录凭证过期或失效（若用户修改平台账户密码，所有游戏授权凭证将失效，需重新登录）。建议游戏在初始化完成后调用【登录状态查询】接口查询用户当前登录状态。* 
+*注：登录后如果未注销，登录状态将一直保持直至登录凭证过期或失效（若用户修改平台账户密码，所有游戏授权凭证将失效，需重新登录）。建议游戏在初始化完成后调用[登录状态查询](#登录状态查询)接口查询用户当前登录状态。* 
 
 ## 获取当前登录用户信息
 在SDK处于登录状态时，可通过该接口获取当前用户的信息（`UID`、`用户名`、`昵称`、`登录凭证`）。
@@ -257,9 +262,14 @@ mOpeCenter.recharge(MainActivity.this,
 
 				    @Override
 				    public void onRechargeFinished(
-					    boolean success, int resultCode)
+					    boolean success, int resultCode,
+					    String msg)
 				    {
-			            //充值完成后的游戏逻辑
+			            if(success){
+			                //请求游戏服，获取充值结果
+			            }else{
+			                //充值失败逻辑
+			            }
 				    }
 				});
 ```
@@ -274,6 +284,7 @@ String resultMessage = OperateCenter.getResultMsg(resultCode);
 ```
 
 ## 析构
+游戏退出时调用本接口，释放SDK资源以及保存相关数据。
 ```java
 mOpeCenter.destroy();
 ```

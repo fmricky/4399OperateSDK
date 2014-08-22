@@ -6,7 +6,7 @@
 --------|---------------|-----------|-------------------------
 v1.0.0  |   2014-07-08  |   张生    |   创建文档
 v1.0.1  |   2014-07-14  |   张生    |   增加部分接口参数的说明
-v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署配置、修改部分接口调用方式
+v2.0.0  |   2014-08-22  |   郑旭    |   增加全局监听、修改SDK部署配置、修改部分接口调用方式
 
 #目录
 
@@ -111,20 +111,13 @@ v2.0.0  |   2014-07-31  |   郑旭    |   增加全局监听、修改SDK部署�
 如果游戏有需要进行代码混淆，请不要混淆联编的jar包下的类，可以在`proguard.cfg`文件里追加以下配置排除SDK jar包中得类
 
 ``` 
--libraryjars ../m4399RechargeSDK/libs/m4399RechargeSDK.jar
--libraryjars ../m4399RechargeSDK/libs/alipay.jar
--libraryjars ../m4399RechargeSDK/libs/huafubao_sdk_1.1.13.jar
--libraryjars ../m4399RechargeSDK/libs/m4399OperateSDK.jar
+-dontwarn android.support.v4.**
+-keep class android.support.v4.** { *; }
+-keep public class * extends android.support.v4.**
 
 -keep class cn.m4399.operate.** {*;}
 -keep class cn.m4399.recharge.** {*;}
--keep class cn.m4399.recharge.thirdparty.** {*;}
 -keepclassmembers class cn.m4399.recharge.R$* {*;}
--keep public class com.alipay.android.app.lib.ResourceMap {*;}
-
--keep class com.alipay.android.app.IAliPay{*;}
--keep class com.alipay.android.app.IAlixPay{*;}
--keep class com.alipay.android.app.IRemoteServiceCallback{*;} 
 ```
 # 接入流程
 ## 初始化

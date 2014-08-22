@@ -1,0 +1,78 @@
+# view AndroidManifest.xml #generated:25
+-keep class cn.m4399.game.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:50
+-keep class cn.m4399.operate.ui.activity.CustomWebActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:42
+-keep class cn.m4399.operate.ui.activity.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:46
+-keep class cn.m4399.operate.ui.activity.UserCenterActivity { <init>(...); }
+
+# view res/layout/m4399_ope_activity_login.xml #generated:9
+-keep class cn.m4399.operate.ui.fragment.CustomWebFragment { <init>(...); }
+
+# view res/layout/m4399_ope_activity_usercenter.xml #generated:11
+-keep class cn.m4399.operate.ui.fragment.UserCenterFragment { <init>(...); }
+
+# view res/layout/m4399_ope_fragment_usercenter.xml #generated:8
+# view res/layout/m4399_ope_fragment_webview.xml #generated:8
+-keep class cn.m4399.operate.ui.widget.NavigationBarView { <init>(...); }
+
+# view res/layout/m4399_ope_assist_left.xml #generated:2
+# view res/layout/m4399_ope_assist_right.xml #generated:2
+-keep class cn.m4399.operate.ui.widget.SDKPopContentView { <init>(...); }
+
+# view res/layout/m4399_ope_fragment_usercenter.xml #generated:13
+-keep class cn.m4399.operate.ui.widget.UserInfoView { <init>(...); }
+
+# view AndroidManifest.xml #generated:36
+-keep class cn.m4399.recharge.ui.activity.RechargeActivity { <init>(...); }
+
+# view res/layout/m4399_rec_sec_order_role_area.xml #generated:29
+-keep class cn.m4399.recharge.ui.widget.FtnnCircleTextView { <init>(...); }
+
+# view port\res/layout-port/m4399_rec_page_sup_youbi.xml #generated:39
+# view res/layout/m4399_ope_view_user_info.xml #generated:58
+# view res/layout/m4399_rec_page_sup_youbi.xml #generated:55
+# view res/layout/m4399_rec_sec_unsup_role_youbi.xml #generated:33
+-keep class cn.m4399.recharge.ui.widget.InquiryBar { <init>(...); }
+
+# view AndroidManifest.xml #generated:55
+-keep class com.alipay.sdk.app.H5PayActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:61
+-keep class com.umpay.huafubao.service.AppUpgradeService { <init>(...); }
+
+# view AndroidManifest.xml #generated:58
+-keep class com.umpay.huafubao.ui.BillingActivity { <init>(...); }
+
+# view res/layout/hfb_billingcode.xml #generated:154
+# view res/layout/hfb_padquery.xml #generated:61
+-keep class com.umpay.huafubao.view.CountDownButton { <init>(...); }
+
+# onClick res/layout/main.xml #generated:33
+-keepclassmembers class * { *** onIsLoginButtonClicked(...); }
+
+# onClick res/layout/main.xml #generated:24
+-keepclassmembers class * { *** onLoginButtonClicked(...); }
+
+# onClick res/layout/main.xml #generated:49
+-keepclassmembers class * { *** onLogoutButtonClicked(...); }
+
+# onClick res/layout/main.xml #generated:83
+-keepclassmembers class * { *** onRechargeButtonClicked(...); }
+
+# onClick res/layout/main.xml #generated:108
+-keepclassmembers class * { *** onRemoveAccountButtonClicked(...); }
+
+# onClick res/layout/main.xml #generated:99
+-keepclassmembers class * { *** onServerButtonClicked(...); }
+
+# onClick res/layout/main.xml #generated:58
+-keepclassmembers class * { *** onUpdateButtonClicked(...); }
+
+# onClick res/layout/main.xml #generated:74
+-keepclassmembers class * { *** onUserButtonClicked(...); }
+

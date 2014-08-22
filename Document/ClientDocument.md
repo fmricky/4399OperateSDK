@@ -52,8 +52,8 @@ v2.0.0  |   2014-08-22  |   郑旭    |   增加全局监听、修改SDK部署�
 ## 接入前期准备
 1. 向4399运营人员提供游戏名称、游戏内货币名称、人民币与游戏币的兑换率
 2. 4399运营人员会提供接入时需要的`GameKey`和`Secrect`。
-3. GameKey为接入客户端SDK时使用，在初始化SDK时传入。
-4. GameKey，Screct同时需要配置在服务端，详见服务端接口文档。
+3. GameKey为接入客户端SDK时使用，在初始化SDK时传入。请勿将Secrect写入游戏客户端。
+4. GameKey，Secrect同时需要配置在服务端，详见[服务端接口文档](https://github.com/fmricky/4399OperateSDK/blob/master/Document/ServerDocument.md)。
 
 ## SDK集成流程
 假设现在你的工程目录名字叫project，下面将具体介绍如何将SDK接入project中。
@@ -82,9 +82,9 @@ v2.0.0  |   2014-08-22  |   郑旭    |   增加全局监听、修改SDK部署�
 - 注册SDK相关Activity&Service，注意必须放入`<application>`元素区块内
 ```xml
 <activity
-	android:name="cn.m4399.operate.ui.activity.LoginActivity"
-	android:launchMode="singleTask"
-	android:theme="@style/TransparentStyle" />
+    android:name="cn.m4399.operate.ui.activity.LoginActivity"
+    android:launchMode="singleTask"
+    android:theme="@style/m4399TransparentStyle" />
 <activity
 	android:name="cn.m4399.operate.ui.activity.UserCenterActivity"
 	android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
@@ -92,9 +92,9 @@ v2.0.0  |   2014-08-22  |   郑旭    |   增加全局监听、修改SDK部署�
 	android:name="cn.m4399.operate.ui.activity.CustomWebActivity"
 	android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 <activity
-	android:name="cn.m4399.recharge.ui.activity.RechargeActivity"
-	android:launchMode="singleTask"
-	android:theme="@style/MVTheme" />
+    android:name="cn.m4399.recharge.ui.activity.RechargeActivity"
+    android:launchMode="singleTask"
+    android:theme="@style/m4399ActivityTheme" />
 <!--------以下为第三方支付SDK Activity&Service配置------------>
 <activity android:name="com.alipay.sdk.app.H5PayActivity" 
           android:screenOrientation="landscape"/>
@@ -266,7 +266,7 @@ mOpeCenter.recharge(MainActivity.this,
 				    }
 				});
 ```
-* `je`充值金额：4399充值中心仅支持整数金额充值，最小充值金额`1`元，最大不超过`5000`元。
+* `je`充值金额：4399充值中心仅支持整数金额充值，最小充值金额`1`元，最大不超过`50000`元。
 * `mark`订单号：最大长度32位，由包含字母或数字组成的唯一字符串，该字段不可为空。
 * `productName`商品名称：最长不超过8个字符。 如果传入商品名，充值中心将直接显示改商品名称，如果充值金额大于下单时传入的`je`时，将显示商品名+XXX游戏币，相关游戏币的兑换比例在接入时提供给运营人员配置。如果未传入商品名，则直接显示XXX游戏币。
 

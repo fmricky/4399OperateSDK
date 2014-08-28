@@ -124,28 +124,28 @@ v2.0.0  |   2014-08-22  |   郑旭    |   增加全局监听、修改SDK部署�
 初始化推荐在游戏初始化过程中进行，析构函数则在游戏退出前执行。
 ```java
 mOpeCenter = OperateCenter.getInstance();
-	mOpeConfig = new OperateCenterConfig.Builder(this)
-	    .setGameKey("GAME_KEY")     //设置GameKey
-		.setDebugEnabled(false)     //设置DEBUG模式,用于接入过程中开关日志输出，发布前必须设置为false。默认为false。
-		.setOrientation(OperateCenterConfig.SCREEN_ORIENTATION_LANDSCAPE)  //设置横竖屏方向，默认为横屏
-		.setSupportExcess(true)     //设置服务端是否支持处理超出部分金额，默认为false
-		.setShowPopWindow(true)     //设置是否显示悬浮窗，默认为true
-		.build();
-	mOpeCenter.setConfig(mOpeConfig);
-	mOpeCenter.init(new OperateCenter.OnInitGloabListener() {
-        //初始化完成
-	    @Override
-	    public void onInitFinished(boolean isLogin, User userInfo)
-	    {
-            //初始化完成后操作（例如检查当前登录状态）
-	    }
+mOpeConfig = new OperateCenterConfig.Builder(this)
+	.setGameKey("GAME_KEY")     //设置GameKey
+	.setDebugEnabled(false)     //设置DEBUG模式,用于接入过程中开关日志输出，发布前必须设置为false。默认为false。
+	.setOrientation(OperateCenterConfig.SCREEN_ORIENTATION_LANDSCAPE)  //设置横竖屏方向，默认为横屏
+	.setSupportExcess(true)     //设置服务端是否支持处理超出部分金额，默认为false
+	.setShowPopWindow(true)     //设置是否显示悬浮窗，默认为true
+	.build();
+mOpeCenter.setConfig(mOpeConfig);
+mOpeCenter.init(new OperateCenter.OnInitGloabListener() {
+    	//初始化完成
+	@Override
+	public void onInitFinished(boolean isLogin, User userInfo)
+	{
+         //初始化完成后操作（例如检查当前登录状态）
+	}
 	    
         //用户通过悬浮窗-个人中心-注销成功时SDK调用该回调
-	    @Override
-	    public void onUserAccountLogout()
-	    {
-            //游戏注销逻辑
-	    }
+	@Override
+	public void onUserAccountLogout()
+	{
+        //游戏注销逻辑
+	}
 });
 ```
 

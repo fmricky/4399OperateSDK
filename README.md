@@ -1,3 +1,10 @@
+项目迁移通知
+==============
+## 本项目存放地址已迁往[https://github.com/4399SDKDev/4399OperateSDK](https://github.com/4399SDKDev/4399OperateSDK),请前往该项目，获取最新SDK开发包以及说明文档。
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
 4399运营SDK 接入说明
 ==============
 # SDK下载
